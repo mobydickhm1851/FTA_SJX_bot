@@ -1,0 +1,39 @@
+set laststatus=2
+set t_Co=256
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+set clipboard^=unnamed
+
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+"set background=dark
+colorscheme Tomorrow-Night-Eighties
+set mouse=a
+set showmatch " show the matching part of the pair for [] {} and ()
+set autochdir " set working directory same with current editing file
+set history=1024
+set nu 
+
+set timeoutlen=1000
+set ttimeoutlen=000
+
+
+
+nnoremap <F3> a<C-R>=strftime("%Y-%m-%d %I:%M:%S")<CR><Esc>
+hi CursorLine   cterm=NONE ctermbg=grey ctermfg=black guibg=darkred guifg=white
+set cursorline
+
+" Set Ctrl + p as shortcut into insert-paste mode
+set pastetoggle = <C-p>
+
+" comment shortcut for python, # for comment, -# for un-comment
+vnoremap <silent> # :s/^/#/<cr>:noh<cr>
+vnoremap <silent> -# :s/^#//<cr>:noh<cr>
