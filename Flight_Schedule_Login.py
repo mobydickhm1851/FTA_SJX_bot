@@ -33,7 +33,7 @@ def create_message(name, add_num, del_num, flight_dict):
             + flight_dict['Aircraft'][i]+'\n' + flight_dict['Module'][i]+'-'+flight_dict['Exercise'][i]+'  '\
             + flight_dict['Description'][i]+'  ' + flight_dict['Flytype'][i]+'\n'+'\n'
         msg_all += msg
-    msg_all += "http://202.158.223.244/OPS_STUDENT_REPORTS/rdLogon.aspx" + "\n"
+    # msg_all += "http://202.158.223.244/OPS_STUDENT_REPORTS/rdLogon.aspx" + "\n"
     return msg_all
 
 def send_LINE_notification(msg, tkn="SJX"):
@@ -211,6 +211,9 @@ if __name__ == "__main__":
             
             count += 1
             # Debugging
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
+            print("Still running {0} Time={1}".format(count, current_time))
             if count >= 30:
                 now = datetime.now()
                 current_time = now.strftime("%H:%M:%S")
@@ -220,6 +223,8 @@ if __name__ == "__main__":
             time.sleep(120)
 
         except requests.exceptions.ConnectionError:
+            now = datetime.now()
+            current_time = now.strftime("%H:%M:%S")
             send_LINE_notification("Connection Reset Error triggered (Time={0})".format(current_time), tkn='LiuYC')
             print("Connection Reset Error triggered (Time={0})".format(current_time))
             continue
